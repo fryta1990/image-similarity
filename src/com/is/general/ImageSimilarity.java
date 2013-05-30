@@ -3,12 +3,16 @@
  */
 package com.is.general;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.is.algorithm.Compare;
 import com.is.utils.ISLogger;
+import com.is.utils.ImageHolder;
 
 /**
  * @author Grzegorz Polek <grzegorz.polek@gmail.com>
@@ -20,7 +24,7 @@ public class ImageSimilarity {
 	
 	private static void setup()
 	{
-		
+		// TODO: Do iniitial setup of Semaphore, Multithreading etc. for this class, or other great stuff.
 	}
 	
 	/**
@@ -57,7 +61,7 @@ public class ImageSimilarity {
 			{
 				LOG.info("File Path found:" + path);
 				
-				// TODO: Load image from file path to program's memory
+				// TODO: Check if file exists, if not throw exception
 			}
 			else
 			{
@@ -68,7 +72,9 @@ public class ImageSimilarity {
 				{
 					LOG.info("URL Path found:" + path);
 					
-					// TODO: Load image from URL to program's memory
+					// TODO: Download image from url
+					// TODO: Save image on a new path, somwehere
+					// TODO: Change the path variable to the new path of the image
 				}
 				else
 				{
@@ -86,6 +92,22 @@ public class ImageSimilarity {
 			{
 				LOG.severe("Path is null. What the hell?!");
 				throw new Exception("Path is null. What the hell?!");
+			}
+			
+			File file = new File(path);
+			
+			// Compare them
+			try {
+				Compare compare = new Compare(file);
+				List<ImageHolder> images = compare.getResults();
+				for(ImageHolder i : images)
+				{
+					System.out.println("Image: " + i.getFile().getPath());
+					System.out.println("Distance: " + Double.toString(i.getDistance()));
+				}
+			} catch (Exception e) {
+				LOG.severe("Comparision failed. Ooops!");
+				throw new Exception("Comparision failed. Ooops!");
 			}
 		}
 		else
