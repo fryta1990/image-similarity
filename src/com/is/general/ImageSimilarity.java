@@ -24,7 +24,7 @@ public class ImageSimilarity {
 	
 	private static void setup()
 	{
-		// TODO: Do iniitial setup of Semaphore, Multithreading etc. for this class, or other great stuff.
+		// TODO: Do initial setup of Semaphore, Multithreading etc. for this class, or other great stuff.
 	}
 	
 	/**
@@ -59,7 +59,7 @@ public class ImageSimilarity {
 			// If it is file
 			if(matcher.find())
 			{
-				LOG.info("File Path found:" + path);
+				LOG.info("File Path found: " + path);
 				
 				// TODO: Check if file exists, if not throw exception
 			}
@@ -70,7 +70,7 @@ public class ImageSimilarity {
 				// If it is URL
 				if(matcher.find())
 				{
-					LOG.info("URL Path found:" + path);
+					LOG.info("URL Path found: " + path);
 					
 					// TODO: Download image from url
 					// TODO: Save image on a new path, somwehere
@@ -94,7 +94,10 @@ public class ImageSimilarity {
 				throw new Exception("Path is null. What the hell?!");
 			}
 			
+			// Get a file
 			File file = new File(path);
+			
+			// TODO: Think about multithreading here, how we can implement it...
 			
 			// Compare them
 			try {
