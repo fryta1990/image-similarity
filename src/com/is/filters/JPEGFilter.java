@@ -1,4 +1,4 @@
-package coms.is.filters;
+package com.is.filters;
 
 import java.io.File;
  

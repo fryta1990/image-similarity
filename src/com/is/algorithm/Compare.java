@@ -13,9 +13,9 @@ import javax.media.jai.JAI;
 import javax.media.jai.iterator.RandomIter;
 import javax.media.jai.iterator.RandomIterFactory;
 
+import com.is.filters.JPEGFilter;
 import com.is.utils.ImageHolder;
 
-import coms.is.filters.JPEGFilter;
 
 /**
  * This class uses a very simple, naive similarity algorithm to compare an image
