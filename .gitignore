@@ -8,6 +8,10 @@
 .idea
 .project
 .classpath
+.settings
+
+.idea/*
+.settings/*
 
 is-log.txt
 /bin

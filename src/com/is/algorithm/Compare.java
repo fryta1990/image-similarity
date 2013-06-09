@@ -49,7 +49,7 @@ public class Compare {
 	    
 	    // Now we need a component to store X images in a stack, where X is the
 	    // number of images in the same directory as the original one.
-	    File[] others = getOtherImageFiles(reference);
+	    File[] others = getOtherImageFiles(reference); // TODO: Get images from other locations, rather than reference's parent folder
 	       
 	    // For each image, calculate its signature and its distance from the
 	    // reference signature.

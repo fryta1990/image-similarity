@@ -76,7 +76,7 @@ public class ImageSimilarity {
 					LOG.info("URL Path found: " + path);
 					
 					// TODO: Download image from url
-					// TODO: Save image on a new path, somwehere
+					// TODO: Save image on a new path, somewhere
 					// TODO: Change the path variable to the new path of the image
 				}
 				else
