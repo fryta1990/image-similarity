@@ -14,6 +14,7 @@ import com.is.algorithm.Compare;
 import com.is.utils.ISLogger;
 import com.is.utils.ImageHolder;
 
+
 /**
  * @author Grzegorz Polek <grzegorz.polek@gmail.com>
  *
@@ -32,6 +33,8 @@ public class ImageSimilarity {
 	 * @throws Exception 
 	 */
 	public static void main(String[] args) throws Exception {
+		
+		System.setProperty("com.sun.media.jai.disableMediaLib", "true");
 		
 		// Set up the logger
 		try {
@@ -109,6 +112,7 @@ public class ImageSimilarity {
 					System.out.println("Distance: " + Double.toString(i.getDistance()));
 				}
 			} catch (Exception e) {
+				e.printStackTrace();
 				LOG.severe("Comparision failed. Ooops!");
 				throw new Exception("Comparision failed. Ooops!");
 			}

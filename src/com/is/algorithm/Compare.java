@@ -5,9 +5,11 @@ import java.awt.image.RenderedImage;
 import java.awt.image.renderable.ParameterBlock;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.imageio.ImageIO;
+import javax.media.*;
 import javax.media.jai.InterpolationNearest;
 import javax.media.jai.JAI;
 import javax.media.jai.iterator.RandomIter;
@@ -54,6 +56,7 @@ public class Compare {
 	    RenderedImage[] rothers = new RenderedImage[others.length];
 	    
 	    double[] distances = new double[others.length];
+	    
 	    for (int o = 0; o < others.length; o++)
 	    {
 	    	rothers[o] = rescale(ImageIO.read(others[o]));
@@ -79,6 +82,8 @@ public class Compare {
 	            }
 	        }
 	    }
+	    
+	    images = new ArrayList<ImageHolder>();
 	    
 	    // Do something with files
 	    for (int o = 0; o < others.length; o++)
