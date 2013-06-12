@@ -12,6 +12,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.is.algorithm.Compare;
+import com.is.utils.Check;
 import com.is.utils.ISLogger;
 import com.is.utils.ImageHolder;
 
@@ -126,28 +127,6 @@ public class ImageSimilarity {
 			LOG.severe("Comparision failed. Ooops!");
 			throw new RuntimeException("Comparision failed. Ooops!");
 		}
-	}
-	
-	protected boolean checkURL(String url)
-	{
-		Pattern url_pattern = Pattern.compile("^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]");
-		
-		Matcher matcher = null;
-		
-		matcher = url_pattern.matcher(url);
-		
-		return matcher.find();
-	}
-	
-	protected boolean checkPATH(String path)
-	{
-		Pattern path_pattern = Pattern.compile("[^\0]+");
-		
-		Matcher matcher = null;
-		
-		matcher = path_pattern.matcher(path);
-		
-		return matcher.find();
 	}
 
 }
