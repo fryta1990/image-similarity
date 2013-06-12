@@ -61,7 +61,7 @@ public class UserInterface extends JFrame {
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.DARK_GRAY);
-		panel_1.setBounds(100, 5, 489, 33);
+		panel_1.setBounds(12, 5, 668, 33);
 		panel.add(panel_1);
 		
 		JButton btnSelectImage = new JButton("Select Original Image");
