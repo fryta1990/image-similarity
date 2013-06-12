@@ -17,6 +17,7 @@ import com.is.utils.ImageHolder;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
+import com.beust.jcommander.ParameterException;
 
 /**
  * @author Grzegorz Polek <grzegorz.polek@gmail.com>
@@ -29,15 +30,20 @@ public class ImageSimilarity {
 	@Parameter
 	private List<String> parameters = new ArrayList<String>();
 	
-	@Parameter(names = "-gui", description = "GUI")
+	@Parameter(names = {"-h", "--help"}, description = "Show help")
+	private boolean help = false;
+	
+	@Parameter(names = {"-g", "--gui"}, description = "Enable Graphical User Interface")
 	private boolean gui = false;
-
-	@Parameter(names = "-img", description = "Absolute Path to the image")
+	
+	@Parameter(names = {"-i", "--img"}, description = "Absolute Path to the image")
 	private String img;
 
-	@Parameter(names = "-dir", description = "Absolute Path to directory with images to compare with")
+	@Parameter(names = {"-d", "--dir"}, description = "Absolute Path to directory with images to compare with")
 	private String dir;
 
+	private static JCommander jc;
+	
     /**
 	 * @param args
 	 * @throws Exception 
@@ -46,14 +52,31 @@ public class ImageSimilarity {
 	{
 		ImageSimilarity is = new ImageSimilarity();
 		
-		new JCommander(is, args);
+		jc = new JCommander(is);
+		jc.setProgramName("ImageSimilarity");
+		
+		try
+		{
+			jc.parse(args);
+		} 
+		catch (ParameterException pe) 
+		{
+			System.out.println("Wrong console parameters. See usage of ImageSimilarity below:");
+			jc.usage();
+		}
 		
 		is.setup();
-		is.run();
 	}
 	
 	private void setup()
 	{
+		// Show help
+		if(help)
+		{
+			jc.usage();
+		}
+		
+		// GUI enabled
 		if(gui)
 		{
 			try {
@@ -63,10 +86,8 @@ public class ImageSimilarity {
 				e.printStackTrace();
 			}
 		}
-	}
-	
-	private void run()
-	{
+		
+		// Disable MediaLib. lol.
 		System.setProperty("com.sun.media.jai.disableMediaLib", "true");
 		
 		// Set up the logger
@@ -77,21 +98,17 @@ public class ImageSimilarity {
 	    	throw new RuntimeException("Problems with creating the log files!");
 	    }
 		
-		String path = null;
-			
-		/*// Run setup function.
-		if(path != null)
+		// Run
+		if(img != null && dir != null)
 		{
-			setup();
+			run();
 		}
-		else
-		{
-			LOG.severe("Path is null. What the hell?!");
-			throw new RuntimeException("Path is null. What the hell?!");
-		}
-		
+	}
+	
+	private void run()
+	{
 		// Get a file
-		File file = new File(path);
+		File file = new File(img);
 		
 		// TODO: Think about multithreading here, how we can implement it...
 		
@@ -108,7 +125,7 @@ public class ImageSimilarity {
 			e.printStackTrace();
 			LOG.severe("Comparision failed. Ooops!");
 			throw new RuntimeException("Comparision failed. Ooops!");
-		}*/
+		}
 	}
 	
 	protected boolean checkURL(String url)
