@@ -33,7 +33,12 @@ public class ImageHolder {
 	
 	public double getDifference()
 	{
-		return this.distance;
+		return (double)((this.distance * 100) / 11041);
+	}
+	
+	public double getSimilarity()
+	{
+		return (double)(100 - this.getDifference());
 	}
 	
 }

@@ -5,6 +5,7 @@ package com.is.general;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -132,6 +133,8 @@ public class ImageSimilarity {
 		
 		// TODO: Think about multithreading here, how we can implement it...
 		
+		DecimalFormat df = new DecimalFormat("#.##");
+		
 		// Compare images
 		try {
 			Compare compare = new Compare(image, directory);
@@ -140,8 +143,10 @@ public class ImageSimilarity {
 			for(ImageHolder i : images)
 			{
 				System.out.println("Image: " + i.getFile().getPath());
-				System.out.println("Distance: " + Double.toString(i.getDistance()));
-				System.out.println("Difference: " + Double.toString(i.getDifference()));
+				System.out.println("Distance: " + df.format(i.getDistance()));
+				System.out.println("Difference: " + df.format(i.getDifference()) + "%");
+				System.out.println("Similarity: " + df.format(i.getSimilarity()) + "%");
+				System.out.println("\n");
 			}
 			
 		} catch (Exception e) {
