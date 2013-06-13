@@ -77,6 +77,9 @@ public class ImageSimilarity {
 			jc.usage();
 		}
 		
+		// Disable MediaLib. lol.
+		System.setProperty("com.sun.media.jai.disableMediaLib", "true");
+		
 		// GUI enabled
 		if(gui)
 		{
@@ -87,9 +90,6 @@ public class ImageSimilarity {
 				e.printStackTrace();
 			}
 		}
-		
-		// Disable MediaLib. lol.
-		System.setProperty("com.sun.media.jai.disableMediaLib", "true");
 		
 		// Set up the logger
 		try {
@@ -112,7 +112,11 @@ public class ImageSimilarity {
 	
 	private void run()
 	{
-		// Get a file
+		if(Check.url(img))
+		{
+			// TODO: Download image from URL, save it somewhere, and update variable `img` with new path of downloaded file
+		}
+		
 		File image = new File(img);
 		File directory = new File(dir);
 		
@@ -137,6 +141,7 @@ public class ImageSimilarity {
 			{
 				System.out.println("Image: " + i.getFile().getPath());
 				System.out.println("Distance: " + Double.toString(i.getDistance()));
+				System.out.println("Difference: " + Double.toString(i.getDifference()));
 			}
 			
 		} catch (Exception e) {

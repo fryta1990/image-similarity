@@ -31,4 +31,9 @@ public class ImageHolder {
 		return this.distance;
 	}
 	
+	public double getDifference()
+	{
+		return this.distance;
+	}
+	
 }
