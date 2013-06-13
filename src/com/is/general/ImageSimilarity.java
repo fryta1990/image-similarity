@@ -104,24 +104,41 @@ public class ImageSimilarity {
 		{
 			run();
 		}
+		else
+		{
+			throw new RuntimeException("Comparision failed. Ooops!");
+		}
 	}
 	
 	private void run()
 	{
 		// Get a file
-		File file = new File(img);
+		File image = new File(img);
+		File directory = new File(dir);
+		
+		if(!image.exists())
+		{
+			throw new RuntimeException("Image doesn't exist!");
+		}
+		
+		if(!directory.exists())
+		{
+			throw new RuntimeException("Directory doesn't exist!");
+		}
 		
 		// TODO: Think about multithreading here, how we can implement it...
 		
 		// Compare images
 		try {
-			Compare compare = new Compare(file);
+			Compare compare = new Compare(image, directory);
+			
 			List<ImageHolder> images = compare.getResults();
 			for(ImageHolder i : images)
 			{
 				System.out.println("Image: " + i.getFile().getPath());
 				System.out.println("Distance: " + Double.toString(i.getDistance()));
 			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			LOG.severe("Comparision failed. Ooops!");
